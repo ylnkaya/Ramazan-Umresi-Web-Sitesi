@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body { margin:0; padding:0; }</style>
+</head>
+<body class="bg-white overflow-hidden" style="width:400px;height:400px;">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:400px;gap:0;padding:20px;">
+
+    <!-- SYMBOL -->
+    <div style="flex-shrink:0;">
+      <svg width="148" height="148" viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer decorative ring -->
+        <circle cx="74" cy="74" r="70" fill="none" stroke="#C9A860" stroke-width="0.8" opacity="0.55"/>
+        <!-- Second inner ring (subtle) -->
+        <circle cx="74" cy="74" r="64" fill="none" stroke="#C9A860" stroke-width="0.3" opacity="0.2"/>
+
+        <!-- Crescent Moon -->
+        <defs>
+          <mask id="cm-v">
+            <rect width="148" height="148" fill="white"/>
+            <circle cx="89" cy="63" r="47" fill="black"/>
+          </mask>
+        </defs>
+        <circle cx="70" cy="76" r="52" fill="#C9A860" mask="url(#cm-v)"/>
+
+        <!-- Rub el-Hizb (8-pointed star) in crescent opening -->
+        <g transform="translate(114, 43)">
+          <rect x="-7.5" y="-7.5" width="15" height="15" fill="#1A2744"/>
+          <rect x="-7.5" y="-7.5" width="15" height="15" fill="#1A2744" transform="rotate(45)"/>
+          <circle r="2.5" fill="#C9A860"/>
+        </g>
+
+        <!-- Bottom anchor line -->
+        <line x1="36" y1="125" x2="112" y2="125" stroke="#C9A860" stroke-width="0.6" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <!-- WORDMARK -->
+    <div style="text-align:center;margin-top:16px;">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;letter-spacing:0.3em;color:#1A2744;font-weight:400;line-height:1;">
+        RAMAZAN
+      </div>
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:19px;letter-spacing:0.45em;color:#1A2744;font-weight:400;line-height:1;margin-top:5px;">
+        UMRESİ
+      </div>
+
+      <!-- Decorative rule -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin:14px auto;">
+        <div style="width:20px;height:1px;background:#C9A860;opacity:0.8;"></div>
+        <!-- Small diamond -->
+        <div style="width:5px;height:5px;background:#C9A860;transform:rotate(45deg);opacity:0.85;"></div>
+        <div style="width:20px;height:1px;background:#C9A860;opacity:0.8;"></div>
+      </div>
+
+      <!-- Tagline -->
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:9px;letter-spacing:0.38em;color:#C9A860;font-weight:400;white-space:nowrap;">
+        KUTSAL TOPRAKLARA YOLCULUK
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'Cinzel';
+      font-style: normal;
+      font-weight: 400;
+    }
+    body { margin:0; padding:0; }
+  </style>
+</head>
+<body class="bg-white overflow-hidden" style="width:800px;height:200px;">
+  <div style="display:flex;align-items:center;height:200px;padding:0 44px;gap:0;">
+
+    <!-- SYMBOL -->
+    <div style="flex-shrink:0;">
+      <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer decorative ring -->
+        <circle cx="64" cy="64" r="60" fill="none" stroke="#C9A860" stroke-width="0.7" opacity="0.55"/>
+        <!-- Second inner ring (subtle) -->
+        <circle cx="64" cy="64" r="55" fill="none" stroke="#C9A860" stroke-width="0.3" opacity="0.2"/>
+
+        <!-- Crescent Moon -->
+        <defs>
+          <mask id="cm-h">
+            <rect width="128" height="128" fill="white"/>
+            <circle cx="77" cy="55" r="41" fill="black"/>
+          </mask>
+        </defs>
+        <circle cx="60" cy="67" r="45" fill="#C9A860" mask="url(#cm-h)"/>
+
+        <!-- Rub el-Hizb (8-pointed star) in crescent opening -->
+        <g transform="translate(99, 36)">
+          <rect x="-6.5" y="-6.5" width="13" height="13" fill="#1A2744"/>
+          <rect x="-6.5" y="-6.5" width="13" height="13" fill="#1A2744" transform="rotate(45)"/>
+          <circle r="2" fill="#C9A860"/>
+        </g>
+
+        <!-- Bottom anchor line (subtle) -->
+        <line x1="32" y1="108" x2="96" y2="108" stroke="#C9A860" stroke-width="0.6" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <!-- VERTICAL DIVIDER -->
+    <div style="flex-shrink:0;display:flex;align-items:center;align-self:stretch;padding:40px 0;margin:0 36px;">
+      <div style="width:1px;height:100%;background:linear-gradient(to bottom,transparent 0%,#C9A860 25%,#C9A860 75%,transparent 100%);opacity:0.45;"></div>
+    </div>
+
+    <!-- WORDMARK -->
+    <div style="flex:1;">
+      <!-- Brand name -->
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:31px;letter-spacing:0.24em;color:#1A2744;font-weight:400;white-space:nowrap;line-height:1;">
+        RAMAZAN UMRESİ
+      </div>
+      <!-- Gold rule -->
+      <div style="margin:11px 0 9px 0;display:flex;align-items:center;gap:10px;">
+        <div style="width:24px;height:1px;background:#C9A860;opacity:0.9;"></div>
+        <div style="flex:1;max-width:340px;height:1px;background:linear-gradient(to right,#C9A860,rgba(201,168,96,0.15));opacity:0.85;"></div>
+      </div>
+      <!-- Tagline -->
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:10.5px;letter-spacing:0.42em;color:#C9A860;font-weight:400;white-space:nowrap;">
+        KUTSAL TOPRAKLARA YOLCULUK
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
