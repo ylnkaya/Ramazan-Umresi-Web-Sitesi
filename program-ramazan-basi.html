@@ -127,7 +127,34 @@
     .cta-btn:hover { background: #D4B470; }
     footer { background: #080E1E; color: rgba(255,255,255,.3); text-align: center; padding: 24px; font-size: .8rem; }
     @media(max-width:768px){ .hero__sep { display: none; } .price-box { position: static; } }
-</style>
+
+    /* ─── PRICE CALCULATOR ─────────────────────────────── */
+    .pc-wrap{display:flex;flex-direction:column;gap:40px;max-width:760px}
+    .pc-step-lbl{font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);font-weight:500;margin-bottom:20px}
+    .pc-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .pc-room{cursor:pointer;display:block}
+    .pc-room__card{padding:20px;border:1.5px solid var(--cream2);background:var(--white);transition:all .2s;height:100%}
+    .pc-room:hover .pc-room__card{border-color:rgba(201,168,96,.5)}
+    .pc-room--sel .pc-room__card{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+    .pc-room__t{font-family:var(--ff-serif);font-size:1.2rem;color:var(--navy);margin-bottom:6px}
+    .pc-room__p{font-size:1.1rem;font-weight:500;color:var(--navy)}
+    .pc-room__p small{font-size:.75rem;font-weight:400;color:var(--muted)}
+    .pc-room__sub{font-size:.75rem;color:var(--muted);margin-top:4px}
+    .pc-children{display:flex;flex-direction:column;border-top:1px solid var(--cream2)}
+    .pc-child{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--cream2)}
+    .pc-child__age{font-weight:500;font-size:.9375rem;color:var(--navy)}
+    .pc-child__pr{font-size:.8125rem;color:var(--muted);margin-top:2px}
+    .pc-ctr{display:flex;align-items:center;border:1px solid var(--cream2);background:var(--white)}
+    .pc-ctr__b{width:36px;height:36px;font-size:1.1rem;color:var(--navy);background:none;border:none;cursor:pointer;transition:background .15s;line-height:1}
+    .pc-ctr__b:hover{background:var(--cream2)}
+    .pc-ctr__v{width:38px;text-align:center;font-weight:500;color:var(--navy);font-size:1rem}
+    .pc-result{background:var(--navy2);padding:32px 28px}
+    .pc-result__inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .pc-result__lbl{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
+    .pc-result__amt{font-family:var(--ff-serif);font-size:2.5rem;color:var(--gold);font-weight:300;line-height:1}
+    .pc-result__note{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:8px;max-width:280px}
+    @media(max-width:640px){.pc-rooms{grid-template-columns:1fr}.pc-result__inner{flex-direction:column;align-items:flex-start}}
+  </style>
 </head>
 <body>
 
@@ -308,6 +335,74 @@
   </div>
 </section>
 
-<footer><p>© Ramazan Umresi. Tüm hakları saklıdır.</p></footer>
+
+  <!-- ─── FIYAT HESAPLAMA ──────────────────────────── -->
+  <section class="section section--alt" id="fiyat-hesapla">
+    <div class="container">
+      <div class="eyebrow"><span class="label">Fiyat Hesaplama</span></div>
+      <h2 class="serif" style="font-size:clamp(1.8rem,3vw,2.4rem);color:var(--navy);margin-bottom:12px;font-weight:300">Programı Kişiselleştirin</h2>
+      <p style="font-size:.9375rem;color:var(--muted);margin-bottom:48px;max-width:480px">Oda tipini ve varsa çocuk sayısını seçerek tahmini toplam ücretinizi hesaplayın.</p>
+      <div class="pc-wrap">
+        <div>
+          <div class="pc-step-lbl">1 — Oda Tipi Seçin</div>
+          <div class="pc-rooms">
+            <label class="pc-room pc-room--sel">
+              <input type="radio" name="pcRoom" value="2" data-n="2" data-p="1450" checked hidden>
+              <div class="pc-room__card">
+                <div class="pc-room__t">2 Kişilik</div>
+                <div class="pc-room__p">$1.450<small> / kişi</small></div>
+                <div class="pc-room__sub">Toplam $2.900</div>
+              </div>
+            </label>
+            <label class="pc-room">
+              <input type="radio" name="pcRoom" value="3" data-n="3" data-p="1350" hidden>
+              <div class="pc-room__card">
+                <div class="pc-room__t">3 Kişilik</div>
+                <div class="pc-room__p">$1.350<small> / kişi</small></div>
+                <div class="pc-room__sub">Toplam $4.050</div>
+              </div>
+            </label>
+            <label class="pc-room">
+              <input type="radio" name="pcRoom" value="4" data-n="4" data-p="1300" hidden>
+              <div class="pc-room__card">
+                <div class="pc-room__t">4 Kişilik</div>
+                <div class="pc-room__p">$1.300<small> / kişi</small></div>
+                <div class="pc-room__sub">Toplam $5.200</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="pc-step-lbl">2 — Çocuk Ekle <span style="opacity:.55;font-weight:400">(isteğe bağlı)</span></div>
+          <div class="pc-children">
+            <div class="pc-child" data-p="550">
+              <div><div class="pc-child__age">0 – 2 Yaş</div><div class="pc-child__pr">+$550 / kişi</div></div>
+              <div class="pc-ctr"><button class="pc-ctr__b" type="button" onclick="pcDelta(this,-1)">−</button><span class="pc-ctr__v">0</span><button class="pc-ctr__b" type="button" onclick="pcDelta(this,1)">+</button></div>
+            </div>
+            <div class="pc-child" data-p="900">
+              <div><div class="pc-child__age">3 – 5 Yaş</div><div class="pc-child__pr">+$900 / kişi</div></div>
+              <div class="pc-ctr"><button class="pc-ctr__b" type="button" onclick="pcDelta(this,-1)">−</button><span class="pc-ctr__v">0</span><button class="pc-ctr__b" type="button" onclick="pcDelta(this,1)">+</button></div>
+            </div>
+            <div class="pc-child" data-p="1050">
+              <div><div class="pc-child__age">6 – 11 Yaş</div><div class="pc-child__pr">+$1.050 / kişi</div></div>
+              <div class="pc-ctr"><button class="pc-ctr__b" type="button" onclick="pcDelta(this,-1)">−</button><span class="pc-ctr__v">0</span><button class="pc-ctr__b" type="button" onclick="pcDelta(this,1)">+</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-result">
+          <div class="pc-result__inner">
+            <div>
+              <div class="pc-result__lbl">Tahmini Toplam Ücret</div>
+              <div class="pc-result__amt" id="pcTotal">$2.900</div>
+              <div class="pc-result__note">Kişi başı program fiyatı — gecelik değil</div>
+            </div>
+            <button class="btn-primary" type="button" onclick="pcWhatsapp()" style="white-space:nowrap;border:none;cursor:pointer">📲 &nbsp;Bilgi Al</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>© Ramazan Umresi. Tüm hakları saklıdır.</p></footer>
 </body>
 </html>
