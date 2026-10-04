@@ -127,33 +127,26 @@
     .cta-btn:hover { background: #D4B470; }
     footer { background: #080E1E; color: rgba(255,255,255,.3); text-align: center; padding: 24px; font-size: .8rem; }
     @media(max-width:768px){ .hero__sep { display: none; } .price-box { position: static; } }
-
-    /* ─── PRICE CALCULATOR ─────────────────────────────── */
-    .pc-wrap{display:flex;flex-direction:column;gap:40px;max-width:760px}
-    .pc-step-lbl{font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);font-weight:500;margin-bottom:20px}
-    .pc-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .pc-room{cursor:pointer;display:block}
-    .pc-room__card{padding:20px;border:1.5px solid var(--cream2);background:var(--white);transition:all .2s;height:100%}
-    .pc-room:hover .pc-room__card{border-color:rgba(201,168,96,.5)}
-    .pc-room--sel .pc-room__card{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
-    .pc-room__t{font-family:var(--ff-serif);font-size:1.2rem;color:var(--navy);margin-bottom:6px}
-    .pc-room__p{font-size:1.1rem;font-weight:500;color:var(--navy)}
-    .pc-room__p small{font-size:.75rem;font-weight:400;color:var(--muted)}
-    .pc-room__sub{font-size:.75rem;color:var(--muted);margin-top:4px}
-    .pc-children{display:flex;flex-direction:column;border-top:1px solid var(--cream2)}
-    .pc-child{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--cream2)}
-    .pc-child__age{font-weight:500;font-size:.9375rem;color:var(--navy)}
-    .pc-child__pr{font-size:.8125rem;color:var(--muted);margin-top:2px}
-    .pc-ctr{display:flex;align-items:center;border:1px solid var(--cream2);background:var(--white)}
-    .pc-ctr__b{width:36px;height:36px;font-size:1.1rem;color:var(--navy);background:none;border:none;cursor:pointer;transition:background .15s;line-height:1}
-    .pc-ctr__b:hover{background:var(--cream2)}
-    .pc-ctr__v{width:38px;text-align:center;font-weight:500;color:var(--navy);font-size:1rem}
-    .pc-result{background:var(--navy2);padding:32px 28px}
-    .pc-result__inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-    .pc-result__lbl{font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
-    .pc-result__amt{font-family:var(--ff-serif);font-size:2.5rem;color:var(--gold);font-weight:300;line-height:1}
-    .pc-result__note{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:8px;max-width:280px}
-    @media(max-width:640px){.pc-rooms{grid-template-columns:1fr}.pc-result__inner{flex-direction:column;align-items:flex-start}}
+.pc-result__inner{flex-direction:column;align-items:flex-start}}
+  
+    /* ─── PRICE BOX CALCULATOR ─── */
+    .pb-sec-lbl{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px}
+    .pb-optional{font-size:.6rem;text-transform:none;letter-spacing:0;opacity:.5;font-style:italic;margin-left:6px}
+    .pb-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:4px}
+    .pb-room{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);color:var(--white);padding:10px 6px;border-radius:3px;cursor:pointer;text-align:center;transition:all .2s;width:100%}
+    .pb-room:hover{border-color:rgba(201,168,96,.5)}
+    .pb-room--sel{border-color:var(--gold);background:rgba(201,168,96,.18)}
+    .pb-room__t{font-size:.78rem;font-weight:500;margin-bottom:3px}
+    .pb-room__p{font-size:.68rem;opacity:.65}
+    .pb-room__p small{font-size:.6rem}
+    .pb-children{border-top:1px solid rgba(255,255,255,.08)}
+    .pb-child{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);color:var(--white)}
+    .pb-age{font-size:.85rem}
+    .pb-chpr{font-size:.7rem;opacity:.5;margin-top:2px}
+    .pb-ctr{display:flex;align-items:center}
+    .pb-ctr button{width:28px;height:28px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:var(--white);cursor:pointer;font-size:1rem;line-height:1;border-radius:2px;transition:background .15s}
+    .pb-ctr button:hover{background:rgba(255,255,255,.2)}
+    .pb-ctr span{width:30px;text-align:center;font-size:.9rem;font-weight:500;color:var(--white)}
   </style>
 </head>
 <body>
@@ -296,21 +289,32 @@
       <!-- SAĞ: FİYAT KUTUSU -->
       <div>
         <div class="price-box">
-          <div class="price-box__label">Kişi Başı Fiyat (USD)</div>
-          <div class="price-box__from"><span>$</span>1.650</div>
-          <div class="price-box__note">4'lü odadan itibaren</div>
+          <div class="price-box__label">Toplam Tutar (USD)</div>
+          <div class="price-box__from"><span>$</span><span id="pbAmt">3.900</span></div>
+          <div class="price-box__note" id="pbDesc">2 yetişkin · 2 kişilik oda</div>
           <div class="price-box__divider"></div>
-          <table class="ptable">
-            <tr><th>Oda Tipi</th><th style="text-align:right;">Fiyat</th></tr>
-            <tr><td>2 Kişilik Oda</td><td>$1.950</td></tr>
-            <tr><td>3 Kişilik Oda</td><td>$1.800</td></tr>
-            <tr><td>4 Kişilik Oda</td><td>$1.650</td></tr>
-            <tr class="child-head"><td colspan="2">Çocuk Fiyatları (Yataksız)</td></tr>
-            <tr><td>0 – 2 Yaş</td><td>$550</td></tr>
-            <tr><td>3 – 5 Yaş</td><td>$900</td></tr>
-            <tr><td>6 – 11 Yaş</td><td>$1.050</td></tr>
-          </table>
-          <div class="price-box__divider"></div>
+          <div class="pb-sec-lbl">Oda Tipi</div>
+          <div class="pb-rooms">
+            <button type="button" class="pb-room pb-room--sel" data-n="2" data-p="1950" onclick="pbSelectRoom(this)"><div class="pb-room__t">2 Kişilik</div><div class="pb-room__p">$1.950<small>/kişi</small></div></button>
+            <button type="button" class="pb-room" data-n="3" data-p="1800" onclick="pbSelectRoom(this)"><div class="pb-room__t">3 Kişilik</div><div class="pb-room__p">$1.800<small>/kişi</small></div></button>
+            <button type="button" class="pb-room" data-n="4" data-p="1650" onclick="pbSelectRoom(this)"><div class="pb-room__t">4 Kişilik</div><div class="pb-room__p">$1.650<small>/kişi</small></div></button>
+          </div>
+          <div class="pb-sec-lbl" style="margin-top:20px">Çocuk Ekle <span class="pb-optional">isteğe bağlı</span></div>
+          <div class="pb-children">
+            <div class="pb-child" data-p="550">
+              <div><div class="pb-age">0 – 2 Yaş</div><div class="pb-chpr">+$550 / kişi</div></div>
+              <div class="pb-ctr"><button type="button" onclick="pbDelta(this,-1)">−</button><span>0</span><button type="button" onclick="pbDelta(this,1)">+</button></div>
+            </div>
+            <div class="pb-child" data-p="900">
+              <div><div class="pb-age">3 – 5 Yaş</div><div class="pb-chpr">+$900 / kişi</div></div>
+              <div class="pb-ctr"><button type="button" onclick="pbDelta(this,-1)">−</button><span>0</span><button type="button" onclick="pbDelta(this,1)">+</button></div>
+            </div>
+            <div class="pb-child" data-p="1050">
+              <div><div class="pb-age">6 – 11 Yaş</div><div class="pb-chpr">+$1.050 / kişi</div></div>
+              <div class="pb-ctr"><button type="button" onclick="pbDelta(this,-1)">−</button><span>0</span><button type="button" onclick="pbDelta(this,1)">+</button></div>
+            </div>
+          </div>
+          <div class="price-box__divider" style="margin-top:20px"></div>
           <table class="ptable">
             <tr><td>Süre</td><td>42 Gün</td></tr>
             <tr><td>Güzergah</td><td>CID → MED</td></tr>
@@ -336,73 +340,41 @@
 </section>
 
 
-  <!-- ─── FIYAT HESAPLAMA ──────────────────────────── -->
-  <section class="section section--alt" id="fiyat-hesapla">
-    <div class="container">
-      <div class="eyebrow"><span class="label">Fiyat Hesaplama</span></div>
-      <h2 class="serif" style="font-size:clamp(1.8rem,3vw,2.4rem);color:var(--navy);margin-bottom:12px;font-weight:300">Programı Kişiselleştirin</h2>
-      <p style="font-size:.9375rem;color:var(--muted);margin-bottom:48px;max-width:480px">Oda tipini ve varsa çocuk sayısını seçerek tahmini toplam ücretinizi hesaplayın.</p>
-      <div class="pc-wrap">
-        <div>
-          <div class="pc-step-lbl">1 — Oda Tipi Seçin</div>
-          <div class="pc-rooms">
-            <label class="pc-room pc-room--sel">
-              <input type="radio" name="pcRoom" value="2" data-n="2" data-p="1950" checked hidden>
-              <div class="pc-room__card">
-                <div class="pc-room__t">2 Kişilik</div>
-                <div class="pc-room__p">$1.950<small> / kişi</small></div>
-                <div class="pc-room__sub">Toplam $3.900</div>
-              </div>
-            </label>
-            <label class="pc-room">
-              <input type="radio" name="pcRoom" value="3" data-n="3" data-p="1800" hidden>
-              <div class="pc-room__card">
-                <div class="pc-room__t">3 Kişilik</div>
-                <div class="pc-room__p">$1.800<small> / kişi</small></div>
-                <div class="pc-room__sub">Toplam $5.400</div>
-              </div>
-            </label>
-            <label class="pc-room">
-              <input type="radio" name="pcRoom" value="4" data-n="4" data-p="1650" hidden>
-              <div class="pc-room__card">
-                <div class="pc-room__t">4 Kişilik</div>
-                <div class="pc-room__p">$1.650<small> / kişi</small></div>
-                <div class="pc-room__sub">Toplam $6.600</div>
-              </div>
-            </label>
-          </div>
-        </div>
-        <div>
-          <div class="pc-step-lbl">2 — Çocuk Ekle <span style="opacity:.55;font-weight:400">(isteğe bağlı)</span></div>
-          <div class="pc-children">
-            <div class="pc-child" data-p="550">
-              <div><div class="pc-child__age">0 – 2 Yaş</div><div class="pc-child__pr">+$550 / kişi</div></div>
-              <div class="pc-ctr"><button class="pc-ctr__b" type="button" onclick="pcDelta(this,-1)">−</button><span class="pc-ctr__v">0</span><button class="pc-ctr__b" type="button" onclick="pcDelta(this,1)">+</button></div>
-            </div>
-            <div class="pc-child" data-p="900">
-              <div><div class="pc-child__age">3 – 5 Yaş</div><div class="pc-child__pr">+$900 / kişi</div></div>
-              <div class="pc-ctr"><button class="pc-ctr__b" type="button" onclick="pcDelta(this,-1)">−</button><span class="pc-ctr__v">0</span><button class="pc-ctr__b" type="button" onclick="pcDelta(this,1)">+</button></div>
-            </div>
-            <div class="pc-child" data-p="1050">
-              <div><div class="pc-child__age">6 – 11 Yaş</div><div class="pc-child__pr">+$1.050 / kişi</div></div>
-              <div class="pc-ctr"><button class="pc-ctr__b" type="button" onclick="pcDelta(this,-1)">−</button><span class="pc-ctr__v">0</span><button class="pc-ctr__b" type="button" onclick="pcDelta(this,1)">+</button></div>
-            </div>
-          </div>
-        </div>
-        <div class="pc-result">
-          <div class="pc-result__inner">
-            <div>
-              <div class="pc-result__lbl">Tahmini Toplam Ücret</div>
-              <div class="pc-result__amt" id="pcTotal">$3.900</div>
-              <div class="pc-result__note">Kişi başı program fiyatı — gecelik değil</div>
-            </div>
-            <button class="btn-primary" type="button" onclick="pcWhatsapp()" style="white-space:nowrap;border:none;cursor:pointer">📲 &nbsp;Bilgi Al</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <footer><p>© Ramazan Umresi. Tüm hakları saklıdır.</p></footer>
+
+<script>
+(function(){
+  var roomN=2, roomP=1950;
+  function fmt(n){return n.toLocaleString('tr-TR');}
+  function calc(){
+    var tot=roomN*roomP;
+    document.querySelectorAll('.pb-child').forEach(function(c){
+      var v=parseInt(c.querySelector('.pb-ctr span').textContent);
+      if(v>0) tot+=v*parseInt(c.dataset.p);
+    });
+    document.getElementById('pbAmt').textContent=fmt(tot);
+    var ch=[];
+    document.querySelectorAll('.pb-child').forEach(function(c){
+      var v=parseInt(c.querySelector('.pb-ctr span').textContent);
+      if(v>0) ch.push(v+' çocuk ('+c.querySelector('.pb-age').textContent+')');
+    });
+    var d=roomN+' yetişkin · '+roomN+' kişilik oda';
+    if(ch.length) d+=' + '+ch.join(', ');
+    document.getElementById('pbDesc').textContent=d;
+  }
+  window.pbSelectRoom=function(btn){
+    document.querySelectorAll('.pb-room').forEach(function(b){b.classList.remove('pb-room--sel');});
+    btn.classList.add('pb-room--sel');
+    roomN=parseInt(btn.dataset.n); roomP=parseInt(btn.dataset.p);
+    calc();
+  };
+  window.pbDelta=function(btn,d){
+    var sp=btn.parentNode.querySelector('span');
+    sp.textContent=Math.max(0,parseInt(sp.textContent)+d);
+    calc();
+  };
+})();
+</script>
 </body>
 </html>
