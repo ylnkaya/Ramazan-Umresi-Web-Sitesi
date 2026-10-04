@@ -319,6 +319,7 @@
 
     .program-list { display: flex; flex-direction: column; gap: 0; }
     .program-item {
+      cursor: pointer;
       display: grid; grid-template-columns: 80px 1fr auto;
       align-items: start; gap: 32px;
       padding: 36px 0;
@@ -341,7 +342,13 @@
       color: var(--white); margin-bottom: 8px;
       font-weight: var(--fw-light);
     }
-    .program-item__desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
+    .program-item__cta {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-top: 14px; display: inline-flex; align-items: center;
+      font-weight: 500; transition: gap 0.3s ease;
+    }
+    .program-item:hover .program-item__cta { gap: 6px; }
+        .program-item__desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
     .program-item__tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
     .tag {
       font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -491,7 +498,8 @@
       name: "10 Gecelik Temel Program",
       tarih: "Ramazan 2025",
       desc: "Mekke ve Medine'de huzurlu bir Ramazan. Mescid-i Haram'a yürüme mesafesinde konaklama, deneyimli rehberlik eşliğinde.",
-      tags: ["Mekke", "Medine", "Ekonomik Seçenek"]
+      tags: ["Mekke", "Medine", "Ekonomik Seçenek"],
+      link: "program-temel.html"
     },
     {
       no: "02",
@@ -499,7 +507,8 @@
       name: "14 Gecelik Standart Program",
       tarih: "Ramazan 2025",
       desc: "İki kutsal şehirde daha uzun ve derin bir deneyim. Kadir Gecesi'ni Mescid-i Haram'da geçirme imkânı.",
-      tags: ["Mekke", "Medine", "Kadir Gecesi"]
+      tags: ["Mekke", "Medine", "Kadir Gecesi"],
+      link: "program-standart.html"
     },
     {
       no: "03",
@@ -507,7 +516,8 @@
       name: "21 Gecelik Tam Ramazan",
       tarih: "Ramazan 2025",
       desc: "Ramazan'ın ilk gününden son gecesine kadar kutsal topraklarda. Son 10 gece itikaf imkânı.",
-      tags: ["Mekke", "Medine", "İtikaf", "Tam Ramazan"]
+      tags: ["Mekke", "Medine", "İtikaf", "Tam Ramazan"],
+      link: "program-tam-ramazan.html"
     },
   ];
 
@@ -953,6 +963,10 @@
     const el = document.createElement('article');
     el.className = 'program-item';
     el.setAttribute('role', 'listitem');
+    if (p.link) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => { window.location.href = p.link; });
+    }
     el.innerHTML = `
       <div class="program-item__num" aria-hidden="true">${p.no}</div>
       <div>
@@ -962,6 +976,7 @@
         <div class="program-item__tags" aria-label="Etiketler">
           ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
         </div>
+        ${p.link ? `<div class="program-item__cta">Detayları İncele <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-left:4px"><path d="M3 8h10M8 3l5 5-5 5" stroke="#C9A860" stroke-width="1.2" stroke-linecap="round"/></svg></div>` : ''}
       </div>
       <div class="program-item__gece" aria-label="${p.geceSayisi} gece">
         <span>${p.geceSayisi}</span>

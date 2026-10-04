@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>14 Gecelik Standart Program | Ramazan Umresi</title>
+  <meta name="description" content="İki kutsal şehirde 14 gece derin bir Ramazan deneyimi. Kadir Gecesi'ni Mescid-i Haram'da geçirme imkânı." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #1A2744;
+      --navy2:  #0F1A33;
+      --gold:   #C9A860;
+      --gold2:  #B8963A;
+      --cream:  #F7F3EC;
+      --cream2: #EDE8DF;
+      --warm:   #8B7355;
+      --text:   #2C2416;
+      --muted:  #6B6254;
+      --white:  #FFFFFF;
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans:  'Inter', system-ui, sans-serif;
+      --transition: 0.3s ease;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--ff-sans); color: var(--text); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 14, 30, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,96,0.12);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav__logo { display: flex; align-items: center; }
+    .nav__logo svg { height: 44px; width: auto; }
+    .nav__links { display: flex; align-items: center; gap: 40px; }
+    .nav__links a {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color var(--transition);
+    }
+    .nav__links a:hover { color: var(--gold); }
+    .nav__cta {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(201,168,96,0.4);
+      padding: 9px 20px; border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .nav__cta:hover { background: var(--gold); color: var(--navy2); }
+
+    /* HERO */
+    .hero {
+      min-height: 55vh;
+      background: linear-gradient(160deg, #0F1A33 0%, #1A2744 60%, #0F1A33 100%);
+      display: flex; align-items: flex-end;
+      padding-top: 72px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,96,0.06) 0%, transparent 70%);
+    }
+    .hero__inner {
+      max-width: 1120px; margin: 0 auto; padding: 64px 24px 72px;
+      position: relative; z-index: 2;
+    }
+    .breadcrumb {
+      font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .breadcrumb a { color: var(--gold); opacity: 0.8; transition: opacity var(--transition); }
+    .breadcrumb a:hover { opacity: 1; }
+    .breadcrumb span { color: rgba(255,255,255,0.25); }
+    .hero__tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .hero__tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.6; }
+    .hero__title {
+      font-family: var(--ff-serif); font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--white); font-weight: 300; line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero__subtitle {
+      font-size: 1rem; color: rgba(255,255,255,0.5);
+      max-width: 560px; line-height: 1.75; margin-bottom: 40px;
+    }
+    .hero__meta {
+      display: flex; flex-wrap: wrap; gap: 32px;
+    }
+    .hero__meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .hero__meta-label {
+      font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .hero__meta-value {
+      font-family: var(--ff-serif); font-size: 1.375rem;
+      color: var(--white); font-weight: 300;
+    }
+    .hero__meta-value.gold { color: var(--gold); }
+    .hero__divider {
+      width: 1px; height: 40px; background: rgba(255,255,255,0.1);
+      align-self: center;
+    }
+
+    /* SECTIONS */
+    .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section--alt { background: var(--cream); }
+    .section--dark { background: var(--navy2); color: var(--white); }
+    .section__eyebrow {
+      font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold2); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section__eyebrow::after { content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.4; }
+    .section__title {
+      font-family: var(--ff-serif); font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 300; margin-bottom: 16px;
+    }
+    .section__desc { color: var(--muted); max-width: 560px; line-height: 1.75; margin-bottom: 48px; }
+
+    /* LAYOUT */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    @media(max-width:768px){ .two-col { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* PROGRAM DETAILS */
+    .detail-block { margin-bottom: 40px; }
+    .detail-block__title {
+      font-family: var(--ff-serif); font-size: 1.25rem; font-weight: 400;
+      color: var(--navy); margin-bottom: 16px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--cream2);
+    }
+    .detail-list { display: flex; flex-direction: column; gap: 10px; }
+    .detail-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--text); line-height: 1.6;
+    }
+    .detail-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+    .detail-list.check li::before { content: '✓'; color: #4CAF50; font-size: 0.8rem; margin-top: 2px; }
+    .detail-list.cross li::before { content: '✕'; color: #e57373; font-size: 0.8rem; margin-top: 2px; }
+
+    /* PROGRAM TABLE / ITINERARY */
+    .itinerary { display: flex; flex-direction: column; gap: 0; }
+    .itin-row {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 0; padding: 20px 0;
+      border-bottom: 1px solid var(--cream2);
+    }
+    .itin-row:first-child { border-top: 1px solid var(--cream2); }
+    .itin-day {
+      font-family: var(--ff-serif); font-size: 1.5rem; color: var(--gold);
+      font-weight: 300; line-height: 1;
+    }
+    .itin-day span { display: block; font-family: var(--ff-sans); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+    .itin-content h4 { font-family: var(--ff-serif); font-size: 1.125rem; color: var(--navy); margin-bottom: 4px; }
+    .itin-content p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* PRICE BOX */
+    .price-box {
+      background: var(--navy2); color: var(--white);
+      padding: 40px; border-radius: 4px;
+      position: sticky; top: 92px;
+    }
+    .price-box__label { font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .price-box__price { font-family: var(--ff-serif); font-size: 3rem; color: var(--gold); font-weight: 300; line-height: 1; }
+    .price-box__price span { font-size: 1.25rem; }
+    .price-box__note { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 6px; margin-bottom: 28px; }
+    .price-box__divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 24px; }
+    .price-box__items { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .price-box__item { display: flex; justify-content: space-between; font-size: 0.875rem; }
+    .price-box__item span:first-child { color: rgba(255,255,255,0.55); }
+    .price-box__item span:last-child { color: var(--white); font-weight: 500; }
+    .btn-gold {
+      display: block; width: 100%; text-align: center;
+      background: var(--gold); color: var(--navy2);
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 16px; border-radius: 2px;
+      transition: background var(--transition);
+    }
+    .btn-gold:hover { background: #D4B470; }
+    .price-box__sub { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-align: center; margin-top: 12px; }
+
+    /* TAGS */
+    .tag {
+      font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold2); border: 1px solid rgba(201,168,96,0.3);
+      padding: 4px 10px; border-radius: 2px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+    /* HOTEL CARD */
+    .hotel-mini {
+      background: var(--cream); border: 1px solid var(--cream2);
+      padding: 24px; border-radius: 4px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .hotel-mini__city { font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold2); }
+    .hotel-mini__name { font-family: var(--ff-serif); font-size: 1.25rem; color: var(--navy); }
+    .hotel-mini__stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; }
+    .hotel-mini__dist { font-size: 0.8rem; color: var(--muted); }
+    .hotels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .hotels-grid { grid-template-columns: 1fr; } }
+
+    /* BACK */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 32px;
+      transition: gap var(--transition);
+    }
+    .back-btn:hover { gap: 12px; }
+    .back-btn svg { transform: rotate(180deg); }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, #0F1A33 0%, #1A2744 100%);
+      padding: 80px 0; text-align: center;
+    }
+    .cta-section h2 { font-family: var(--ff-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--white); font-weight: 300; margin-bottom: 16px; }
+    .cta-section p { color: rgba(255,255,255,0.5); margin-bottom: 36px; }
+    .cta-gold {
+      display: inline-block;
+      background: var(--gold); color: var(--navy2);
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 16px 40px; border-radius: 2px;
+      transition: background var(--transition);
+    }
+    .cta-gold:hover { background: #D4B470; }
+
+    /* FOOTER */
+    footer {
+      background: #080E1E; color: rgba(255,255,255,0.3);
+      text-align: center; padding: 28px 24px;
+      font-size: 0.8rem;
+    }
+
+    @media(max-width:768px){
+      .hero__meta { gap: 20px; }
+      .hero__divider { display: none; }
+      .price-box { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Ramazan Umresi Ana Sayfa">
+      <svg height="44" viewBox="0 0 380 88" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(4, 4)">
+          <circle cx="40" cy="40" r="37" fill="none" stroke="#C9A860" stroke-width="0.6" opacity="0.4"/>
+          <defs><mask id="nav-cm"><rect width="80" height="80" fill="white"/><circle cx="48" cy="35" r="27" fill="black"/></mask></defs>
+          <circle cx="37" cy="43" r="30" fill="#C9A860" mask="url(#nav-cm)"/>
+          <g transform="translate(62, 24)">
+            <rect x="-4.5" y="-4.5" width="9" height="9" fill="#C9A860"/>
+            <rect x="-4.5" y="-4.5" width="9" height="9" fill="#C9A860" transform="rotate(45)"/>
+            <circle r="1.5" fill="#0F1A33"/>
+          </g>
+        </g>
+        <line x1="95" y1="16" x2="95" y2="72" stroke="#C9A860" stroke-width="0.8" opacity="0.3"/>
+        <text x="108" y="36" font-family="Georgia, serif" font-size="15" letter-spacing="4" fill="white">RAMAZAN</text>
+        <line x1="108" y1="44" x2="360" y2="44" stroke="#C9A860" stroke-width="0.5" opacity="0.35"/>
+        <text x="108" y="60" font-family="Georgia, serif" font-size="15" letter-spacing="4" fill="white">UMRESİ</text>
+        <text x="108" y="75" font-family="Georgia, serif" font-size="6.5" letter-spacing="3.5" fill="#C9A860" opacity="0.8">KUTSAL TOPRAKLARA YOLCULUK</text>
+      </svg>
+    </a>
+    <div class="nav__links">
+      <a href="index.html#hakkimizda">Hakkımızda</a>
+      <a href="index.html#programlar">Programlar</a>
+      <a href="index.html#oteller">Konaklamalar</a>
+      <a href="index.html#iletisim">İletişim</a>
+    </div>
+    <a href="index.html#iletisim" class="nav__cta">Bilgi Al</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="breadcrumb">
+      <a href="index.html">Ana Sayfa</a>
+      <span>/</span>
+      <a href="index.html#programlar">Programlar</a>
+      <span>/</span>
+      14 Gecelik Standart Program
+    </div>
+    <div class="hero__tag">Program 02</div>
+    <h1 class="hero__title">10 Gecelik<br />Temel Program</h1>
+    <p class="hero__subtitle">İki kutsal şehirde daha uzun ve derin bir deneyim. Kadir Gecesi'ni Mescid-i Haram'da geçirme imkânı, 5 yıldızlı konfor.</p>
+    <div class="hero__meta">
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Süre</span>
+        <span class="hero__meta-value">10 Gece</span>
+      </div>
+      <div class="hero__divider"></div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Dönem</span>
+        <span class="hero__meta-value">Ramazan 2025</span>
+      </div>
+      <div class="hero__divider"></div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Örnek Fiyat</span>
+        <span class="hero__meta-value gold">₺XX.XXX'den</span>
+      </div>
+      <div class="hero__divider"></div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Kategori</span>
+        <span class="hero__meta-value">Standart</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+
+      <!-- SOL: Program Detayları -->
+      <div>
+        <a href="index.html#programlar" class="back-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3l5 5-5 5M3 8h10" stroke="#C9A860" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Tüm Programlar
+        </a>
+
+        <div class="detail-block">
+          <div class="section__eyebrow">Program Hakkında</div>
+          <h2 class="section__title">Kutsal Topraklarda<br/>Huzurlu 10 Gece</h2>
+          <p style="color:var(--muted); line-height:1.75; margin-bottom:20px;">
+            İki kutsal şehirde 14 gece boyunca derin bir Ramazan deneyimi. Kadir Gecesi'ni Mescid-i Haram'da geçirme fırsatı ile bu program; manevi yolculuğunu konforlu ve kapsamlı yaşamak isteyenler için özenle hazırlanmıştır. 5 yıldızlı otellerde konaklama ve deneyimli rehberlik eşliğinde kutsal topraklarda unutulmaz bir Ramazan.
+          </p>
+          <div class="tags">
+            <span class="tag">Mekke</span>
+            <span class="tag">Medine</span>
+            <span class="tag">Kadir Gecesi</span>
+            <span class="tag">Rehberli</span>
+            <span class="tag">Kadir Gecesi</span>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <h3 class="detail-block__title">Programa Dahil Olanlar</h3>
+          <ul class="detail-list check">
+            <li>Gidiş-dönüş uçak bileti (İstanbul kalkışlı)</li>
+            <li>Mekke'de 6 gece 5 yıldızlı otelde konaklama</li>
+            <li>Medine'de 4 gece 5 yıldızlı otelde konaklama</li>
+            <li>Sabah kahvaltısı ve akşam yemeği (yarım pansiyon)</li>
+            <li>Mekke – Medine arası VIP otobüs transferi</li>
+            <li>Havalimanı transferleri</li>
+            <li>Deneyimli din görevlisi rehberlik hizmeti</li>
+            <li>Umre vizesi işlemleri ve danışmanlığı</li>
+            <li>Mekke ve Medine'de ziyaret turları</li>
+            <li>7/24 Türkçe destek hattı</li>
+          </ul>
+        </div>
+
+        <div class="detail-block">
+          <h3 class="detail-block__title">Programa Dahil Olmayanlar</h3>
+          <ul class="detail-list cross">
+            <li>Kişisel harcamalar ve alışveriş</li>
+            <li>Pasaport ücreti</li>
+            <li>Öğle yemekleri</li>
+            <li>Ek turlar ve aktiviteler</li>
+            <li>Seyahat sigortası (önerilir)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SAĞ: Fiyat Kutusu -->
+      <div>
+        <div class="price-box">
+          <div class="price-box__label">Kişi Başı Fiyat (Örnek)</div>
+          <div class="price-box__price"><span>₺</span>XX.XXX</div>
+          <div class="price-box__note">* Fiyatlar güncellenmeden önce örnek bilgi amaçlıdır.</div>
+          <div class="price-box__divider"></div>
+          <div class="price-box__items">
+            <div class="price-box__item">
+              <span>Süre</span><span>14 Gece / 16 Gün</span>
+            </div>
+            <div class="price-box__item">
+              <span>Kalkış Şehri</span><span>İstanbul</span>
+            </div>
+            <div class="price-box__item">
+              <span>Konaklama</span><span>4 Yıldız</span>
+            </div>
+            <div class="price-box__item">
+              <span>Yemek</span><span>Yarım Pansiyon</span>
+            </div>
+            <div class="price-box__item">
+              <span>Kapasite</span><span>Sınırlı Kontenjan</span>
+            </div>
+          </div>
+          <a href="index.html#iletisim" class="btn-gold">Bilgi Al / Ön Kayıt</a>
+          <div class="price-box__sub">Formu doldurun, sizi arayalım.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM AKIŞI -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__eyebrow">Günlük Program</div>
+    <h2 class="section__title">Program Akışı</h2>
+    <p class="section__desc">Aşağıdaki program taslaktır; kesin tarih ve detaylar kayıt sonrası iletilir.</p>
+
+    <div class="itinerary">
+      <div class="itin-row">
+        <div class="itin-day">1<span>GÜN</span></div>
+        <div class="itin-content">
+          <h4>İstanbul – Mekke</h4>
+          <p>Havalimanında buluşma, Suudi Arabistan'a uçuş. Mekke'ye ulaşım ve otele yerleşim. Umre ihramsız genel bilgilendirme toplantısı.</p>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">2<span>GÜN</span></div>
+        <div class="itin-content">
+          <h4>Umre İbadeti</h4>
+          <p>Mescid-i Haram'a giriş, ihram giyme ve umre ibadeti. Tavaf, Sa'y ve tıraş/kısaltma. Rehber eşliğinde Harem'de namazlar.</p>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">3–9<span>GÜN</span></div>
+        <div class="itin-content">
+          <h4>Mekke'de Ramazan</h4>
+          <p>Mescid-i Haram'da beş vakit namaz ve teravih. Mekke tarihi mekânları ziyareti (Hira Mağarası, Mina, Arafat). Serbest ibadet zamanı.</p>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">7<span>GÜN</span></div>
+        <div class="itin-content">
+          <h4>Mekke – Medine Transferi</h4>
+          <p>Öğle namazının ardından VIP otobüs ile Medine'ye hareket. Otele yerleşim ve Mescid-i Nebevî ziyareti.</p>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">8–10<span>GÜN</span></div>
+        <div class="itin-content">
+          <h4>Medine'de Huzurlu Günler</h4>
+          <p>Mescid-i Nebevî'de namaz ve Hz. Peygamber (s.a.v.)'in kabrini ziyaret. Kubâ Mescidi, Uhud, Kıble Mescidi ve Medine tarihi mekânları.</p>
+        </div>
+      </div>
+      <div class="itin-row">
+        <div class="itin-day">11<span>GÜN</span></div>
+        <div class="itin-content">
+          <h4>Medine – İstanbul</h4>
+          <p>Son namazların ardından havalimanına transfer. İstanbul'a dönüş uçuşu. Umreniz kabul olsun! 🤲</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONAKLAMALAR -->
+<section class="section">
+  <div class="container">
+    <div class="section__eyebrow">Konaklamalar</div>
+    <h2 class="section__title">Konaklama Bilgisi</h2>
+    <p class="section__desc">Oteller güncellenmeden önce örnek bilgi amaçlıdır. Kesin otel bilgisi kayıt sonrası iletilir.</p>
+    <div class="hotels-grid">
+      <div class="hotel-mini">
+        <div class="hotel-mini__city">MEKKE — 6 Gece</div>
+        <div class="hotel-mini__name">5 Yıldızlı Otel (Güncellenecek)</div>
+        <div class="hotel-mini__stars">★★★★</div>
+        <div class="hotel-mini__dist">Mescid-i Haram'a yakın konumda</div>
+      </div>
+      <div class="hotel-mini">
+        <div class="hotel-mini__city">MEDİNE — 4 Gece</div>
+        <div class="hotel-mini__name">5 Yıldızlı Otel (Güncellenecek)</div>
+        <div class="hotel-mini__stars">★★★★</div>
+        <div class="hotel-mini__dist">Mescid-i Nebevî'ye yakın konumda</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Bu Program İlginizi Çekti mi?</h2>
+    <p>Bilgi almak veya ön kayıt yaptırmak için iletişim formunu doldurun.</p>
+    <a href="index.html#iletisim" class="cta-gold">Bilgi Al / Ön Kayıt</a>
+  </div>
+</section>
+
+<footer>
+  <p>© Ramazan Umresi. Tüm hakları saklıdır.</p>
+</footer>
+
+</body>
+</html>
