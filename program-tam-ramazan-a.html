@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Tam Ramazan Programı — A | Ramazan Umresi</title>
+  <meta name="description" content="Ramazan'ın tamamını Mekke'de geçirme. 38 gün Mekke, 4 gün Medine. Tam Ramazan deneyimi için ekonomik seçenek."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1A2744; --navy2: #0F1A33; --gold: #C9A860; --gold2: #B8963A;
+      --cream: #F7F3EC; --cream2: #EDE8DF; --text: #2C2416; --muted: #6B6254;
+      --white: #FFFFFF;
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans: 'Inter', system-ui, sans-serif;
+      --tr: 0.3s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-sans); color: var(--text); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; } ul { list-style: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,14,30,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,96,0.12); }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between;
+      height: 72px; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .nav__links { display: flex; align-items: center; gap: 36px; }
+    .nav__links a { font-size: .75rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
+      color: rgba(255,255,255,.75); transition: color var(--tr); }
+    .nav__links a:hover { color: var(--gold); }
+    .nav__cta { font-size: .75rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(201,168,96,.4); padding: 9px 20px; border-radius: 2px;
+      transition: all var(--tr); }
+    .nav__cta:hover { background: var(--gold); color: var(--navy2); }
+    /* HERO */
+    .hero { min-height: 52vh; background: linear-gradient(160deg,#0F1A33 0%,#1A2744 60%,#0F1A33 100%);
+      display: flex; align-items: flex-end; padding-top: 72px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%,rgba(201,168,96,.06) 0%,transparent 70%); }
+    .hero__inner { max-width: 1120px; margin: 0 auto; padding: 56px 24px 64px; position: relative; z-index: 2; }
+    .breadcrumb { font-size: .6875rem; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .breadcrumb a { color: var(--gold); opacity: .8; }
+    .breadcrumb span { color: rgba(255,255,255,.2); }
+    .hero__no { font-size: .6875rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .hero__no::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: .6; }
+    .hero__title { font-family: var(--ff-serif); font-size: clamp(2.2rem,4.5vw,3.5rem);
+      color: var(--white); font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
+    .hero__desc { font-size: .95rem; color: rgba(255,255,255,.5); max-width: 520px; line-height: 1.75; margin-bottom: 36px; }
+    .hero__meta { display: flex; flex-wrap: wrap; gap: 28px; }
+    .hero__meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .hero__meta-label { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+    .hero__meta-value { font-family: var(--ff-serif); font-size: 1.3rem; color: var(--white); font-weight: 300; }
+    .hero__meta-value.gold { color: var(--gold); }
+    .hero__sep { width: 1px; height: 36px; background: rgba(255,255,255,.1); align-self: center; }
+    /* SECTIONS */
+    .section { padding: 72px 0; }
+    .section--alt { background: var(--cream); }
+    .section--dark { background: var(--navy2); color: var(--white); }
+    .eyebrow { font-size: .6875rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold2);
+      margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .eyebrow::after { content: ''; width: 36px; height: 1px; background: var(--gold); opacity: .4; }
+    .sec-title { font-family: var(--ff-serif); font-size: clamp(1.6rem,2.8vw,2.3rem); font-weight: 300; margin-bottom: 12px; }
+    .sec-desc { color: var(--muted); max-width: 560px; line-height: 1.75; margin-bottom: 40px; }
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 380px; gap: 56px; align-items: start; }
+    @media(max-width:900px){ .two-col { grid-template-columns: 1fr; } }
+    /* BACK BTN */
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: .75rem; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 28px; transition: gap var(--tr); }
+    .back svg { transform: rotate(180deg); }
+    .back:hover { gap: 10px; }
+    /* BLOCK */
+    .block { margin-bottom: 36px; }
+    .block-title { font-family: var(--ff-serif); font-size: 1.2rem; color: var(--navy);
+      margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cream2); }
+    /* LISTS */
+    .list li { display: flex; align-items: flex-start; gap: 10px; font-size: .9rem;
+      color: var(--text); line-height: 1.6; padding: 5px 0; }
+    .list.check li::before { content: '✓'; color: #4CAF50; font-size: .8rem; flex-shrink: 0; margin-top: 2px; }
+    .list.cross li::before { content: '✕'; color: #e57373; font-size: .8rem; flex-shrink: 0; margin-top: 2px; }
+    /* TAGS */
+    .tag { font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold2); border: 1px solid rgba(201,168,96,.3); padding: 4px 10px; border-radius: 2px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    /* PRICE BOX */
+    .price-box { background: var(--navy2); color: var(--white); padding: 36px; border-radius: 4px; position: sticky; top: 88px; }
+    .price-box__label { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+    .price-box__from { font-family: var(--ff-serif); font-size: 2.6rem; color: var(--gold); font-weight: 300; line-height: 1; }
+    .price-box__from span { font-size: 1.1rem; }
+    .price-box__note { font-size: .78rem; color: rgba(255,255,255,.35); margin-top: 4px; margin-bottom: 24px; }
+    .price-box__divider { height: 1px; background: rgba(255,255,255,.08); margin-bottom: 20px; }
+    /* PRICE TABLE */
+    .ptable { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .ptable th { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.4);
+      padding: 0 0 10px; text-align: left; font-weight: 400; }
+    .ptable td { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: .9rem; }
+    .ptable td:first-child { color: rgba(255,255,255,.6); }
+    .ptable td:last-child { color: var(--white); font-weight: 500; text-align: right; }
+    .ptable tr:last-child td { border-bottom: none; }
+    .ptable .child-head td { padding-top: 16px; color: rgba(255,255,255,.35) !important; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 400; }
+    /* BUTTONS */
+    .btn-gold { display: block; width: 100%; text-align: center; background: var(--gold); color: var(--navy2);
+      font-size: .75rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase;
+      padding: 15px; border-radius: 2px; transition: background var(--tr); margin-top: 24px; }
+    .btn-gold:hover { background: #D4B470; }
+    .price-box__sub { font-size: .72rem; color: rgba(255,255,255,.3); text-align: center; margin-top: 10px; }
+    /* INFO GRID */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 36px; }
+    .info-card { background: var(--cream); border: 1px solid var(--cream2); padding: 20px; border-radius: 3px; }
+    .info-card__city { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold2); margin-bottom: 4px; }
+    .info-card__name { font-family: var(--ff-serif); font-size: 1.1rem; color: var(--navy); }
+    .info-card__detail { font-size: .82rem; color: var(--muted); margin-top: 4px; }
+    @media(max-width:600px){ .info-grid { grid-template-columns: 1fr; } }
+    /* CTA SECTION */
+    .cta-sec { background: linear-gradient(135deg,#0F1A33,#1A2744); padding: 72px 0; text-align: center; }
+    .cta-sec h2 { font-family: var(--ff-serif); font-size: clamp(1.6rem,3vw,2.3rem); color: var(--white); font-weight: 300; margin-bottom: 12px; }
+    .cta-sec p { color: rgba(255,255,255,.5); margin-bottom: 32px; }
+    .cta-btn { display: inline-block; background: var(--gold); color: var(--navy2);
+      font-size: .75rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase;
+      padding: 15px 40px; border-radius: 2px; transition: background var(--tr); }
+    .cta-btn:hover { background: #D4B470; }
+    footer { background: #080E1E; color: rgba(255,255,255,.3); text-align: center; padding: 24px; font-size: .8rem; }
+    @media(max-width:768px){ .hero__sep { display: none; } .price-box { position: static; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" aria-label="Ramazan Umresi Ana Sayfa"><svg height="44" viewBox="0 0 380 88" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(4, 4)">
+          <circle cx="40" cy="40" r="37" fill="none" stroke="#C9A860" stroke-width="0.6" opacity="0.4"/>
+          <defs><mask id="nav-cm"><rect width="80" height="80" fill="white"/><circle cx="48" cy="35" r="27" fill="black"/></mask></defs>
+          <circle cx="37" cy="43" r="30" fill="#C9A860" mask="url(#nav-cm)"/>
+          <g transform="translate(62, 24)">
+            <rect x="-4.5" y="-4.5" width="9" height="9" fill="#C9A860"/>
+            <rect x="-4.5" y="-4.5" width="9" height="9" fill="#C9A860" transform="rotate(45)"/>
+            <circle r="1.5" fill="#0F1A33"/>
+          </g>
+        </g>
+        <line x1="95" y1="16" x2="95" y2="72" stroke="#C9A860" stroke-width="0.8" opacity="0.3"/>
+        <text x="108" y="36" font-family="Georgia, serif" font-size="15" letter-spacing="4" fill="white">RAMAZAN</text>
+        <line x1="108" y1="44" x2="360" y2="44" stroke="#C9A860" stroke-width="0.5" opacity="0.35"/>
+        <text x="108" y="60" font-family="Georgia, serif" font-size="15" letter-spacing="4" fill="white">UMRESİ</text>
+        <text x="108" y="75" font-family="Georgia, serif" font-size="6.5" letter-spacing="3.5" fill="#C9A860" opacity="0.8">KUTSAL TOPRAKLARA YOLCULUK</text>
+      </svg></a>
+    <div class="nav__links">
+      <a href="index.html#hakkimizda">Hakkımızda</a>
+      <a href="index.html#programlar">Programlar</a>
+      <a href="index.html#oteller">Konaklamalar</a>
+      <a href="index.html#iletisim">İletişim</a>
+    </div>
+    <a href="index.html#iletisim" class="nav__cta">Bilgi Al</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="breadcrumb">
+      <a href="index.html">Ana Sayfa</a><span>/</span>
+      <a href="index.html#programlar">Programlar</a><span>/</span>
+      Tam Ramazan Programı — A
+    </div>
+    <div class="hero__no">Program 03</div>
+    <h1 class="hero__title">Tam Ramazan Programı — A</h1>
+    <p class="hero__desc">Ramazan'ın tamamını Mekke'de geçirme. 38 gün Mekke, 4 gün Medine. Tam Ramazan deneyimi için ekonomik seçenek.</p>
+    <div class="hero__meta">
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Süre</span>
+        <span class="hero__meta-value">42 Gün</span>
+      </div>
+      <div class="hero__sep"></div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Mekke</span>
+        <span class="hero__meta-value">38 Gün</span>
+      </div>
+      <div class="hero__sep"></div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Medine</span>
+        <span class="hero__meta-value">4 Gün</span>
+      </div>
+      <div class="hero__sep"></div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Başlangıç Fiyatı</span>
+        <span class="hero__meta-value gold">1.650$'dan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+
+      <!-- SOL -->
+      <div>
+        <a href="index.html#programlar" class="back">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3l5 5-5 5M3 8h10" stroke="#C9A860" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Tüm Programlar
+        </a>
+
+        <div class="block">
+          <div class="eyebrow">Program Hakkında</div>
+          <h2 class="sec-title">Tam Ramazan Programı — A</h2>
+          <p style="color:var(--muted);line-height:1.75;margin-bottom:16px;">Tüm Ramazan boyunca — ilk geceden son geceye — Mescid-i Haram'ın nurlu atmosferinde. 38 gün Mekke, 4 gün Medine güzergahıyla gerçek bir Tam Ramazan deneyimi. Kadir Gecesi dahil tüm teravihleri Mescid-i Haram'da kılma imkânı. 6 Umre, Bedir ziyareti ve Taif gezisi programa dahildir.</p>
+          <p style="font-size:.85rem;color:var(--muted);"><strong style="color:var(--gold2);">Güzergah:</strong> Tüm Türkiye'den iç hat bağlantısı · Cidde Giriş / Medine Çıkış</p>
+          <div class="tags">
+            <span class="tag">Mekke</span><span class="tag">Medine</span><span class="tag">42 Gün</span><span class="tag">Tam Ramazan</span><span class="tag">CID Giriş / MED Çıkış</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="block-title">Programa Dahil Olanlar</h3>
+          <ul class="list check">
+            <li>Tüm Türkiye'den iç hat bağlantısı ile uluslararası uçak bileti</li>
+            <li>Cidde giriş / Medine çıkış güzergahı</li>
+            <li>Mekke'de 38 gün konaklama (Harem'e yakın otel)</li>
+            <li>Medine'de 4 gün konaklama (Mescid-i Nebevî'ye yakın otel)</li>
+            <li>Mekke – Medine arası VIP otobüs transferi</li>
+            <li>Havalimanı transferleri</li>
+            <li>6 Umre ibadeti</li>
+            <li>Bedir ziyareti</li>
+            <li>Taif gezisi</li>
+            <li>Umre vizesi işlemleri</li>
+            <li>Diyanet İşleri Başkanlığı kartı</li>
+            <li>Seyahat sigortası</li>
+            <li>Türk aşçılar eşliğinde yemek hizmeti</li>
+            <li>Deneyimli din görevlisi rehberliği</li>
+            <li>7/24 Türkçe destek hattı</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3 class="block-title">Programa Dahil Olmayanlar</h3>
+          <ul class="list cross">
+            <li>Kişisel harcamalar ve alışveriş</li>
+            <li>Pasaport ücreti</li>
+            <li>Ek turlar ve aktiviteler</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="eyebrow">Konaklama</div>
+          <h3 class="sec-title" style="font-size:1.4rem;">Otel Bilgileri</h3>
+          <div class="info-grid">
+            <div class="info-card">
+              <div class="info-card__city">MEKKE — 38 Gün</div>
+              <div class="info-card__name">5 Yıldızlı Otel</div>
+              <div class="info-card__detail">Mescid-i Haram'a yürüme mesafesi</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card__city">MEDİNE — 4 Gün</div>
+              <div class="info-card__name">5 Yıldızlı Otel</div>
+              <div class="info-card__detail">Mescid-i Nebevî'ye yakın konum</div>
+            </div>
+          </div>
+          <p style="font-size:.8rem;color:var(--muted);">* Otel isimleri kesinleştikçe güncellenecektir. Konum ve yıldız kategorisi değişmeyecektir.</p>
+        </div>
+      </div>
+
+      <!-- SAĞ: FİYAT KUTUSU -->
+      <div>
+        <div class="price-box">
+          <div class="price-box__label">Kişi Başı Fiyat (USD)</div>
+          <div class="price-box__from"><span>$</span>1.650</div>
+          <div class="price-box__note">4'lü odadan itibaren</div>
+          <div class="price-box__divider"></div>
+          <table class="ptable">
+            <tr><th>Oda Tipi</th><th style="text-align:right;">Fiyat</th></tr>
+            <tr><td>2 Kişilik Oda</td><td>$1.950</td></tr>
+            <tr><td>3 Kişilik Oda</td><td>$1.800</td></tr>
+            <tr><td>4 Kişilik Oda</td><td>$1.650</td></tr>
+            <tr class="child-head"><td colspan="2">Çocuk Fiyatları (Yataksız)</td></tr>
+            <tr><td>0 – 2 Yaş</td><td>$550</td></tr>
+            <tr><td>3 – 5 Yaş</td><td>$900</td></tr>
+            <tr><td>6 – 11 Yaş</td><td>$1.050</td></tr>
+          </table>
+          <div class="price-box__divider"></div>
+          <table class="ptable">
+            <tr><td>Süre</td><td>42 Gün</td></tr>
+            <tr><td>Güzergah</td><td>CID → MED</td></tr>
+            <tr><td>Uçuş</td><td>İç hat bağlantılı</td></tr>
+            <tr><td>Vize</td><td>Dahil</td></tr>
+            <tr><td>Sigorta</td><td>Dahil</td></tr>
+          </table>
+          <a href="index.html#iletisim" class="btn-gold">Bilgi Al / Ön Kayıt</a>
+          <div class="price-box__sub">Formu doldurun, sizi arayalım.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="container">
+    <h2>Bu Program İlginizi Çekti mi?</h2>
+    <p>Detaylı bilgi almak veya ön kayıt yaptırmak için iletişim formunu doldurun.</p>
+    <a href="index.html#iletisim" class="cta-btn">Bilgi Al / Ön Kayıt</a>
+  </div>
+</section>
+
+<footer><p>© Ramazan Umresi. Tüm hakları saklıdır.</p></footer>
+</body>
+</html>
