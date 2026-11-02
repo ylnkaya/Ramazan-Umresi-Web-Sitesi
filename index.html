@@ -397,6 +397,28 @@
     .hotel-card__name { font-family: var(--ff-serif); font-size: 1.5rem; color: var(--white); font-weight: var(--fw-light); }
     .hotel-card__stars { color: var(--gold); font-size: 0.75rem; margin-top: 4px; letter-spacing: 3px; }
 
+    .hotel-card { cursor: zoom-in; }
+    .hotel-card__bg img, .hotel-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hotel-card--featured .hotel-card__bg img { object-position: center 35%; }
+    .hotel-card__ar { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 4px; }
+    .hotel-card__hint { font-size: 0.75rem; color: var(--gold); margin-top: 10px; letter-spacing: 0.08em; }
+    .hotel-thumbs { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:2px; }
+    .hotel-thumb { position:relative; aspect-ratio:3/4; overflow:hidden; border:0; padding:0; background:var(--cream2); cursor:zoom-in; }
+    .hotel-thumb img { transition: transform .5s ease; }
+    .hotel-thumb:hover img { transform: scale(1.05); }
+    .hotel-thumb span { position:absolute; left:0; right:0; bottom:0; padding:22px 12px 10px; font-size:.75rem; color:#fff; text-align:left; background:linear-gradient(to top, rgba(10,14,30,.8), transparent); }
+    .lb { position:fixed; inset:0; background:rgba(10,14,30,.95); z-index:9999; display:none; align-items:center; justify-content:center; flex-direction:column; }
+    .lb.open { display:flex; }
+    .lb img { max-width:92vw; max-height:82vh; object-fit:contain; }
+    .lb__cap { color:#fff; margin-top:14px; font-size:.9rem; }
+    .lb__cap b { color:var(--gold); font-weight:400; margin-right:8px; }
+    .lb button { position:absolute; background:none; border:0; color:#fff; font-size:2.6rem; cursor:pointer; padding:12px 18px; line-height:1; }
+    .lb__x { top:12px; right:12px; } .lb__p { left:8px; top:50%; transform:translateY(-50%); } .lb__n { right:8px; top:50%; transform:translateY(-50%); }
+    .contact-item__val a { color:inherit; text-decoration:none; }
+    .wa-float { position:fixed; right:22px; bottom:22px; width:58px; height:58px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,.25); z-index:900; transition:transform .2s; }
+    .wa-float:hover { transform:scale(1.08); }
+    @media (max-width: 900px) { .hotel-thumbs { grid-template-columns:repeat(2,1fr); } }
+
     /* ─── WHY ───────────────────────────────────────────────────── */
     .why { padding: 96px 0; background: var(--navy); }
     .why__title { font-family: var(--ff-serif); font-size: clamp(2rem, 3vw, 2.8rem); color: var(--white); margin-bottom: 64px; max-width: 480px; font-weight: var(--fw-light); }
@@ -488,9 +510,10 @@
 ══════════════════════════════════════════════════ -->
 <script>
   const SITE = {
-    phone: "+90 XXX XXX XX XX",
+    phone: "+90 540 445 44 43",
     email: "info@ramazanumresi.com",
-    whatsapp: "+90 XXX XXX XX XX",
+    whatsapp: "+90 540 445 44 43",
+    waNo: "905404454443",
     address: "İstanbul, Türkiye",
     year: new Date().getFullYear(),
   };
@@ -538,11 +561,57 @@
     },
   ];
 
-  const HOTELS = [
-    { sehir: "MEKKE", isim: "Oteli Güncelleyin", yildiz: 5, featured: true },
-    { sehir: "MEKKE", isim: "Oteli Güncelleyin", yildiz: 4, featured: false },
-    { sehir: "MEDİNE", isim: "Oteli Güncelleyin", yildiz: 5, featured: false },
-  ];
+  const HOTEL = { sehir: "MEKKE", isim: "Hidaya Towers", arapca: "أبراج الهداية" };
+  const HOTEL_PHOTOS = [
+  {
+    "src": "images/otel/hidaya-01-dis-cephe.jpg",
+    "alt": "Hidaya Towers dış cephe"
+  },
+  {
+    "src": "images/otel/hidaya-02-atrium.jpg",
+    "alt": "Cam tavanlı atrium"
+  },
+  {
+    "src": "images/otel/hidaya-03-lobi.jpg",
+    "alt": "Cam cepheli lobi"
+  },
+  {
+    "src": "images/otel/hidaya-04-salon.jpg",
+    "alt": "Lobi oturma salonu"
+  },
+  {
+    "src": "images/otel/hidaya-05-oda-1.jpg",
+    "alt": "Dört yataklı oda"
+  },
+  {
+    "src": "images/otel/hidaya-06-oda-2.jpg",
+    "alt": "Üç yataklı oda"
+  },
+  {
+    "src": "images/otel/hidaya-07-oda-3.jpg",
+    "alt": "Oda genel görünüm"
+  },
+  {
+    "src": "images/otel/hidaya-08-oda-4.jpg",
+    "alt": "Oda ve şehir manzarası"
+  },
+  {
+    "src": "images/otel/hidaya-09-oda-detay.jpg",
+    "alt": "Çalışma masası ve minibar"
+  },
+  {
+    "src": "images/otel/hidaya-10-koridor.jpg",
+    "alt": "Kat koridoru"
+  },
+  {
+    "src": "images/otel/hidaya-11-banyo-dus.jpg",
+    "alt": "Banyo – duşakabin"
+  },
+  {
+    "src": "images/otel/hidaya-12-banyo-lavabo.jpg",
+    "alt": "Banyo – lavabo"
+  }
+];
 
   const FEATURES = [
     {
@@ -820,14 +889,15 @@
       <div class="eyebrow">
         <span class="label">Konaklamalar</span>
       </div>
-      <h2 class="hotels__title" id="hotels-heading">Seçkin oteller,<br />merkezi konumlar</h2>
+      <h2 class="hotels__title" id="hotels-heading">Mekke'de konaklamanız:<br />Hidaya Towers</h2>
       <p class="hotels__desc">
-        Mescid-i Haram ve Mescid-i Nebevî'ye yürüme mesafesinde,
-        konforlu ve güvenilir otellerde konaklama.
+        Ferah lobisi, cam tavanlı atriumu ve özenle döşenmiş odalarıyla
+        Hidaya Towers, ibadetlerinizin arasında huzurla dinlenebileceğiniz
+        konforlu bir konaklama sunar. Aşağıdaki fotoğraflar otelde çekilmiştir.
       </p>
     </div>
 
-    <div class="hotels__grid" id="hotels-grid" role="list" aria-label="Konaklama seçenekleri">
+    <div class="hotels__grid" id="hotels-grid" aria-label="Hidaya Towers fotoğraf galerisi">
       <!-- JavaScript ile doldurulacak -->
     </div>
   </div>
@@ -1005,29 +1075,41 @@
     pl.appendChild(el);
   });
 
-  /* ── Oteller ──────────────────────────────── */
+  /* ── Otel galerisi ─────────────────────── */
   const hg = document.getElementById('hotels-grid');
-  HOTELS.forEach(h => {
-    const el = document.createElement('div');
-    el.className = 'hotel-card' + (h.featured ? ' hotel-card--featured' : '');
-    el.setAttribute('role', 'listitem');
-    el.innerHTML = `
-      <div class="hotel-card__bg" aria-hidden="true">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-          <rect x="10" y="30" width="60" height="40" rx="2" stroke="#1A2744" stroke-width="1.5"/>
-          <path d="M20 30v-8a20 20 0 0140 0v8" stroke="#1A2744" stroke-width="1.5"/>
-          <rect x="32" y="48" width="16" height="22" stroke="#1A2744" stroke-width="1.5"/>
-        </svg>
-      </div>
+  hg.style.display = 'block';
+  const ft = HOTEL_PHOTOS[0];
+  hg.innerHTML = `
+    <div class="hotel-card hotel-card--featured" data-i="0" role="button" tabindex="0" aria-label="${ft.alt} – büyüt">
+      <div class="hotel-card__bg"><img src="${ft.src}" alt="${ft.alt}" /></div>
       <div class="hotel-card__overlay"></div>
       <div class="hotel-card__info">
-        <div class="hotel-card__city">${h.sehir}</div>
-        <div class="hotel-card__name">${h.isim}</div>
-        <div class="hotel-card__stars" aria-label="${h.yildiz} yıldızlı otel">${'★'.repeat(h.yildiz)}</div>
+        <div class="hotel-card__city">${HOTEL.sehir}</div>
+        <div class="hotel-card__name">${HOTEL.isim}</div>
+        <div class="hotel-card__ar" lang="ar">${HOTEL.arapca}</div>
+        <div class="hotel-card__hint">${HOTEL_PHOTOS.length} fotoğrafı görmek için tıklayın</div>
       </div>
-    `;
-    hg.appendChild(el);
-  });
+    </div>
+    <div class="hotel-thumbs">${HOTEL_PHOTOS.slice(1).map((p,i)=>`
+      <button class="hotel-thumb" data-i="${i+1}" aria-label="${p.alt} – büyüt"><img src="${p.src}" alt="${p.alt}" loading="lazy" /><span>${p.alt}</span></button>`).join('')}
+    </div>`;
+  const lb = document.createElement('div');
+  lb.className = 'lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-label','Fotoğraf görüntüleyici');
+  lb.innerHTML = '<button class="lb__x" aria-label="Kapat">×</button><button class="lb__p" aria-label="Önceki">‹</button><img alt="" /><div class="lb__cap"></div><button class="lb__n" aria-label="Sonraki">›</button>';
+  document.body.appendChild(lb);
+  let lbi = 0;
+  const lbShow = i => { lbi = (i + HOTEL_PHOTOS.length) % HOTEL_PHOTOS.length; const p = HOTEL_PHOTOS[lbi];
+    lb.querySelector('img').src = p.src; lb.querySelector('img').alt = p.alt;
+    lb.querySelector('.lb__cap').innerHTML = `<b>${lbi+1} / ${HOTEL_PHOTOS.length}</b>${p.alt}`; lb.classList.add('open'); document.body.style.overflow='hidden'; };
+  const lbClose = () => { lb.classList.remove('open'); document.body.style.overflow=''; };
+  hg.querySelectorAll('[data-i]').forEach(el => { el.addEventListener('click', () => lbShow(+el.dataset.i));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') lbShow(+el.dataset.i); }); });
+  lb.querySelector('.lb__x').onclick = lbClose;
+  lb.querySelector('.lb__p').onclick = e => { e.stopPropagation(); lbShow(lbi-1); };
+  lb.querySelector('.lb__n').onclick = e => { e.stopPropagation(); lbShow(lbi+1); };
+  lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+  document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbShow(lbi-1); if (e.key === 'ArrowRight') lbShow(lbi+1); });
 
   /* ── Özellikler ───────────────────────────── */
   const fl = document.getElementById('features-list');
@@ -1044,11 +1126,13 @@
   });
 
   /* ── İletişim ─────────────────────────────── */
+  const WA_URL = 'https://wa.me/' + SITE.waNo + '?text=' + encodeURIComponent('Merhaba, Ramazan Umresi programları hakkında bilgi almak istiyorum.');
+  document.querySelectorAll('a.nav__cta').forEach(a => { a.href = WA_URL; a.target = '_blank'; a.rel = 'noopener'; });
   const cg = document.getElementById('contact-grid');
   const contacts = [
-    { label: "Telefon", val: SITE.phone, sub: "Hafta içi 09:00 – 18:00" },
-    { label: "WhatsApp", val: SITE.whatsapp, sub: "7/24 mesaj atabilirsiniz" },
-    { label: "E-posta", val: SITE.email, sub: "En geç 24 saat içinde yanıt" },
+    { label: "Telefon", val: `<a href="tel:+${SITE.waNo}">${SITE.phone}</a>`, sub: "Hafta içi 09:00 – 18:00" },
+    { label: "WhatsApp", val: `<a href="${WA_URL}" target="_blank" rel="noopener">${SITE.whatsapp}</a>`, sub: "7/24 mesaj atabilirsiniz" },
+    { label: "E-posta", val: `<a href="mailto:${SITE.email}">${SITE.email}</a>`, sub: "En geç 24 saat içinde yanıt" },
   ];
   contacts.forEach(c => {
     const el = document.createElement('div');
@@ -1088,5 +1172,6 @@
     });
   });
 </script>
+<a class="wa-float" href="https://wa.me/905404454443?text=Merhaba%2C%20Ramazan%20Umresi%20programlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp ile yazın"><svg width="30" height="30" viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.1 16 5.1s11 4.8 11 10.7-4.9 10.6-11 10.6zm6-7.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.5c-.3-.7-.5-.6-.8-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.9 1.1 3.5.9 4.1.8.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg></a>
 </body>
 </html>
