@@ -147,6 +147,23 @@
     .pb-ctr button{width:28px;height:28px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:var(--white);cursor:pointer;font-size:1rem;line-height:1;border-radius:2px;transition:background .15s}
     .pb-ctr button:hover{background:rgba(255,255,255,.2)}
     .pb-ctr span{width:30px;text-align:center;font-size:.9rem;font-weight:500;color:var(--white)}
+  
+    /* ─── SEKMELİ İÇERİK ─────────────────────────────── */
+    .prog-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--cream2); margin: 32px 0 24px; }
+    .prog-tab { background: none; border: none; border-bottom: 3px solid transparent; padding: 10px 22px 10px 0;
+      font-family: var(--ff-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); cursor: pointer; transition: color 0.2s, border-color 0.2s; margin-bottom: -2px; }
+    .prog-tab:hover { color: var(--navy); }
+    .prog-tab--active { color: var(--navy); border-bottom-color: var(--gold2); }
+    .prog-panel { display: none; }
+    .prog-panel--active { display: block; }
+    /* ─── BİLGİ ROZETLERİ ─────────────────────────────── */
+    .info-badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 40px; }
+    .ib { background: var(--cream2); padding: 12px 18px; min-width: 90px; }
+    .ib__label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .ib__val { font-family: var(--ff-serif); font-size: 1rem; color: var(--navy); }
+    .ib__val--gold { color: var(--gold2); font-weight: 600; }
+    @media(max-width:700px){ .prog-tab{ font-size:.65rem; padding-right:12px; } .ib{ padding:10px 12px; } }
   </style>
 <style>.wa-float{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:900;transition:transform .2s}.wa-float:hover{transform:scale(1.08)}</style>
 </head>
@@ -218,6 +235,8 @@
 
 <!-- MAIN -->
 <section class="section">
+<div class="container"><div class="info-badges"><div class="ib"><div class="ib__label">Süre</div><div class="ib__val ">42 Gün</div></div><div class="ib"><div class="ib__label">Mekke</div><div class="ib__val ">33 Gece</div></div><div class="ib"><div class="ib__label">Medine</div><div class="ib__val ">9 Gece</div></div><div class="ib"><div class="ib__label">Vize</div><div class="ib__val ">Dahil</div></div><div class="ib"><div class="ib__label">Sigorta</div><div class="ib__val ">Dahil</div></div><div class="ib"><div class="ib__label">Güzergah</div><div class="ib__val ">CID → MED</div></div><div class="ib"><div class="ib__label">Uçuş</div><div class="ib__val ">İç Hat Bağlantılı</div></div><div class="ib"><div class="ib__label">Kalan Yer</div><div class="ib__val ib__val--gold">22 Yer</div></div></div></div>
+
   <div class="container">
     <div class="two-col">
 
@@ -375,6 +394,37 @@
     sp.textContent=Math.max(0,parseInt(sp.textContent)+d);
     calc();
   };
+})();
+</script>
+
+<script>
+(function(){
+  var left = document.querySelector('.two-col > div:first-child');
+  if (!left) return;
+  var blocks = Array.from(left.querySelectorAll('.block'));
+  if (blocks.length < 3) return;
+  var TABS = ['Program', 'Dahil Olanlar', 'Otel Bilgileri'];
+  var GROUPS = [blocks.slice(0,1), blocks.slice(1,-1), blocks.slice(-1)];
+  var nav = document.createElement('div'); nav.className = 'prog-tabs';
+  var panelEls = TABS.map(function(t,i){
+    var btn = document.createElement('button');
+    btn.className = 'prog-tab' + (i===0?' prog-tab--active':''); btn.dataset.i=i; btn.textContent=t;
+    nav.appendChild(btn);
+    var panel = document.createElement('div'); panel.className = 'prog-panel' + (i===0?' prog-panel--active':'');
+    GROUPS[i].forEach(function(b){ panel.appendChild(b); });
+    return panel;
+  });
+  var backEl = left.querySelector('.back') || left.firstElementChild;
+  backEl.insertAdjacentElement('afterend', nav);
+  panelEls.forEach(function(p){ nav.insertAdjacentElement('afterend', p); });
+  panelEls.reverse(); // fix insertion order
+  nav.querySelectorAll('.prog-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      nav.querySelectorAll('.prog-tab').forEach(function(b){b.classList.remove('prog-tab--active');});
+      panelEls.forEach(function(p){p.classList.remove('prog-panel--active');});
+      btn.classList.add('prog-tab--active'); panelEls[2-parseInt(btn.dataset.i)].classList.add('prog-panel--active');
+    });
+  });
 })();
 </script>
 <a class="wa-float" href="https://wa.me/905404454443" aria-label="WhatsApp ile yazın"><svg width="30" height="30" viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.3-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.1 16 5.1s11 4.8 11 10.7-4.9 10.6-11 10.6zm6-7.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.5c-.3-.7-.5-.6-.8-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.9 1.1 3.5.9 4.1.8.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg></a>
