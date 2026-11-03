@@ -420,6 +420,16 @@
     @media (max-width: 900px) { .hotel-thumbs { grid-template-columns:repeat(2,1fr); } }
 
     /* ─── PROGRAM CARD: Fiyat tablosu + rozet ──────────────────── */
+
+    .program-item__price-per {
+      font-family: var(--ff-sans);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 4px;
+      margin-top: 12px;
+    }
     .program-item__price-grid { display: flex; gap: 0; margin-top: 18px; border: 1px solid rgba(201,168,96,0.18); }
     .pip { flex: 1; padding: 10px 12px; text-align: center; border-right: 1px solid rgba(201,168,96,0.18); }
     .pip:last-child { border-right: none; }
@@ -550,51 +560,47 @@
   const PROGRAMS = [
     {
       no: "01",
-      geceSayisi: 15,
+      geceSayisi: 14,
       name: "Ramazan Başı Programı",
-      tarih: "Ramazan 2025 · 15 Gün",
+      tarih: "Ramazan 2027 · 15 Gün",
       desc: "Ramazan'ın ilk günlerini Mescid-i Haram'da geçirme fırsatı. İç hat bağlantısı, vize ve sigorta dahil.",
       tags: ["Mekke", "Medine", "CID→MED"],
       fiyat: "1.300$'dan",
       link: "program-ramazan-basi.html",
       odaFiyatlari: [{n:"2 Kişilik",p:1450},{n:"3 Kişilik",p:1350},{n:"4 Kişilik",p:1300}],
-      kalan: 38
     },
     {
       no: "02",
-      geceSayisi: 20,
+      geceSayisi: 19,
       name: "Ramazan Sonu Programı",
-      tarih: "Ramazan 2025 · 20 Gün",
+      tarih: "Ramazan 2027 · 20 Gün",
       desc: "Kadir Gecesi'ni Mescid-i Haram'da yaşama imkânı. Ramazan'ın son 20 günü kutsal topraklarda.",
       tags: ["Mekke", "Medine", "Kadir Gecesi", "CID→MED"],
       fiyat: "1.450$'dan",
       link: "program-ramazan-sonu.html",
       odaFiyatlari: [{n:"2 Kişilik",p:1650},{n:"3 Kişilik",p:1550},{n:"4 Kişilik",p:1450}],
-      kalan: 34
     },
     {
       no: "03",
-      geceSayisi: 42,
+      geceSayisi: 41,
       name: "Tam Ramazan — Mekke Ağırlıklı",
-      tarih: "Ramazan 2025 · 42 Gün",
+      tarih: "Ramazan 2027 · 42 Gün",
       desc: "38 gün Mekke, 4 gün Medine. Tüm Ramazan boyunca kutsal topraklarda. 6 Umre dahil.",
       tags: ["Mekke", "Medine", "Tam Ramazan", "CID→MED"],
       fiyat: "1.650$'dan",
       link: "program-tam-ramazan-a.html",
       odaFiyatlari: [{n:"2 Kişilik",p:1950},{n:"3 Kişilik",p:1800},{n:"4 Kişilik",p:1650}],
-      kalan: 28
     },
     {
       no: "04",
-      geceSayisi: 42,
+      geceSayisi: 41,
       name: "Tam Ramazan — Medine Ağırlıklı",
-      tarih: "Ramazan 2025 · 42 Gün",
+      tarih: "Ramazan 2027 · 42 Gün",
       desc: "33 gün Mekke, 9 gün Medine. Uzun Medine konaklamalı premium Tam Ramazan deneyimi.",
       tags: ["Mekke", "Medine", "Tam Ramazan", "Uzun Medine", "CID→MED"],
       fiyat: "1.850$'dan",
       link: "program-tam-ramazan-b.html",
       odaFiyatlari: [{n:"2 Kişilik",p:2250},{n:"3 Kişilik",p:2050},{n:"4 Kişilik",p:1850}],
-      kalan: 22
     },
   ];
 
@@ -1102,8 +1108,7 @@
           ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
         </div>
         ${p.fiyat ? `<div class="program-item__price">${p.fiyat}</div>` : ''}
-        ${p.odaFiyatlari ? `<div class="program-item__price-grid">${p.odaFiyatlari.map(f=>`<div class="pip"><div class="pip__label">${f.n}</div><div class="pip__val">$${f.p.toLocaleString('tr-TR')}</div></div>`).join('')}</div>` : ''}
-        ${p.kalan !== undefined ? `<div class="item-badge${p.kalan <= 15 ? ' item-badge--urgent' : ''}">Son ${p.kalan} Yer</div>` : ''}
+        ${p.odaFiyatlari ? `<div class="program-item__price-per">kişi başı fiyat</div><div class="program-item__price-grid">${p.odaFiyatlari.map(f=>`<div class="pip"><div class="pip__label">${f.n}</div><div class="pip__val">$${f.p.toLocaleString('tr-TR')}</div></div>`).join('')}</div>` : ''}
         ${p.link ? `<div class="program-item__cta">Detayları İncele <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-left:4px"><path d="M3 8h10M8 3l5 5-5 5" stroke="#C9A860" stroke-width="1.2" stroke-linecap="round"/></svg></div>` : ''}
       </div>
       <div class="program-item__gece" aria-label="${p.geceSayisi} gece">
