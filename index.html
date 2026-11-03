@@ -419,6 +419,35 @@
     .wa-float:hover { transform:scale(1.08); }
     @media (max-width: 900px) { .hotel-thumbs { grid-template-columns:repeat(2,1fr); } }
 
+    /* ─── PROGRAM CARD: Fiyat tablosu + rozet ──────────────────── */
+    .program-item__price-grid { display: flex; gap: 0; margin-top: 18px; border: 1px solid rgba(201,168,96,0.18); }
+    .pip { flex: 1; padding: 10px 12px; text-align: center; border-right: 1px solid rgba(201,168,96,0.18); }
+    .pip:last-child { border-right: none; }
+    .pip__label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(201,168,96,0.55); margin-bottom: 5px; }
+    .pip__val { font-family: var(--ff-serif); font-size: 1.05rem; color: var(--white); font-weight: 300; }
+    .item-badge { display: inline-block; margin-top: 12px; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 4px 12px; background: rgba(201,168,96,0.12); color: var(--gold); border: 1px solid rgba(201,168,96,0.3); }
+    .item-badge--urgent { background: rgba(180,30,30,0.15); color: #e07070; border-color: rgba(180,30,30,0.3); }
+    @media (max-width: 900px) { .program-item__price-grid { display: none; } }
+
+    /* ─── PROGRAM PAGE: Sekmeler ───────────────────────────────── */
+    .prog-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--cream2); margin-bottom: 32px; margin-top: 32px; }
+    .prog-tab { background: none; border: none; border-bottom: 2px solid transparent; padding: 10px 20px 10px 0;
+      font-family: var(--ff-sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); cursor: pointer; transition: color 0.2s, border-color 0.2s; margin-bottom: -1px; }
+    .prog-tab:hover { color: var(--navy); }
+    .prog-tab--active { color: var(--navy); border-bottom-color: var(--gold2); }
+    .prog-panel { display: none; }
+    .prog-panel--active { display: block; }
+
+    /* ─── PROGRAM PAGE: Bilgi rozetleri ────────────────────────── */
+    .info-badges { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 8px; }
+    .ib { background: var(--cream2); padding: 12px 18px; display: flex; flex-direction: column; gap: 3px; }
+    .ib__label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .ib__val { font-family: var(--ff-serif); font-size: 1rem; color: var(--navy); font-weight: 400; }
+    .ib__val--gold { color: var(--gold2); }
+    @media (max-width: 700px) { .prog-tab { font-size: 0.65rem; padding-right: 14px; } }
+
     /* ─── WHY ───────────────────────────────────────────────────── */
     .why { padding: 96px 0; background: var(--navy); }
     .why__title { font-family: var(--ff-serif); font-size: clamp(2rem, 3vw, 2.8rem); color: var(--white); margin-bottom: 64px; max-width: 480px; font-weight: var(--fw-light); }
@@ -527,7 +556,9 @@
       desc: "Ramazan'ın ilk günlerini Mescid-i Haram'da geçirme fırsatı. İç hat bağlantısı, vize ve sigorta dahil.",
       tags: ["Mekke", "Medine", "CID→MED"],
       fiyat: "1.300$'dan",
-      link: "program-ramazan-basi.html"
+      link: "program-ramazan-basi.html",
+      odaFiyatlari: [{n:"2 Kişilik",p:1450},{n:"3 Kişilik",p:1350},{n:"4 Kişilik",p:1300}],
+      kalan: 38
     },
     {
       no: "02",
@@ -537,7 +568,9 @@
       desc: "Kadir Gecesi'ni Mescid-i Haram'da yaşama imkânı. Ramazan'ın son 20 günü kutsal topraklarda.",
       tags: ["Mekke", "Medine", "Kadir Gecesi", "CID→MED"],
       fiyat: "1.450$'dan",
-      link: "program-ramazan-sonu.html"
+      link: "program-ramazan-sonu.html",
+      odaFiyatlari: [{n:"2 Kişilik",p:1650},{n:"3 Kişilik",p:1550},{n:"4 Kişilik",p:1450}],
+      kalan: 34
     },
     {
       no: "03",
@@ -547,7 +580,9 @@
       desc: "38 gün Mekke, 4 gün Medine. Tüm Ramazan boyunca kutsal topraklarda. 6 Umre dahil.",
       tags: ["Mekke", "Medine", "Tam Ramazan", "CID→MED"],
       fiyat: "1.650$'dan",
-      link: "program-tam-ramazan-a.html"
+      link: "program-tam-ramazan-a.html",
+      odaFiyatlari: [{n:"2 Kişilik",p:1950},{n:"3 Kişilik",p:1800},{n:"4 Kişilik",p:1650}],
+      kalan: 28
     },
     {
       no: "04",
@@ -557,7 +592,9 @@
       desc: "33 gün Mekke, 9 gün Medine. Uzun Medine konaklamalı premium Tam Ramazan deneyimi.",
       tags: ["Mekke", "Medine", "Tam Ramazan", "Uzun Medine", "CID→MED"],
       fiyat: "1.850$'dan",
-      link: "program-tam-ramazan-b.html"
+      link: "program-tam-ramazan-b.html",
+      odaFiyatlari: [{n:"2 Kişilik",p:2250},{n:"3 Kişilik",p:2050},{n:"4 Kişilik",p:1850}],
+      kalan: 22
     },
   ];
 
@@ -1065,6 +1102,8 @@
           ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
         </div>
         ${p.fiyat ? `<div class="program-item__price">${p.fiyat}</div>` : ''}
+        ${p.odaFiyatlari ? `<div class="program-item__price-grid">${p.odaFiyatlari.map(f=>`<div class="pip"><div class="pip__label">${f.n}</div><div class="pip__val">$${f.p.toLocaleString('tr-TR')}</div></div>`).join('')}</div>` : ''}
+        ${p.kalan !== undefined ? `<div class="item-badge${p.kalan <= 15 ? ' item-badge--urgent' : ''}">Son ${p.kalan} Yer</div>` : ''}
         ${p.link ? `<div class="program-item__cta">Detayları İncele <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-left:4px"><path d="M3 8h10M8 3l5 5-5 5" stroke="#C9A860" stroke-width="1.2" stroke-linecap="round"/></svg></div>` : ''}
       </div>
       <div class="program-item__gece" aria-label="${p.geceSayisi} gece">
